@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap/session"
+
+import {
+  "moonbit-community/sqlite3",
+  "moonbit-community/sqlmap/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct SqliteSession {
+  connection : @sqlite3.Connection
+}
+pub fn SqliteSession::close(Self) -> Unit raise
+pub fn SqliteSession::open(String) -> Self raise
+pub impl @core.SessionStore for SqliteSession
+
+// Type aliases
+
+// Traits

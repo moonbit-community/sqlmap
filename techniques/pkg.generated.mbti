@@ -1,0 +1,59 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap/techniques"
+
+import {
+  "moonbit-community/sqlmap/core",
+}
+
+// Values
+pub fn attach_cookies(@core.ScanContext, @core.Request) -> @core.Request
+
+pub fn boolean_value(@core.InjectionPoint, String) -> String
+
+pub fn boundaries(@core.ScanContext, @core.Parameter) -> Array[Boundary]
+
+pub fn computed(String) -> String
+
+pub async fn detect_boolean(@core.ScanContext, @core.Parameter, @core.Response) -> Unit
+
+pub async fn detect_errors(@core.ScanContext, @core.Parameter, @core.Response) -> Unit
+
+pub async fn detect_time(@core.ScanContext, @core.Parameter, @core.Response) -> Unit
+
+pub async fn detect_union(@core.ScanContext, @core.Parameter, @core.Response) -> Unit
+
+pub fn dialects(@core.ScanContext, @core.Parameter) -> Array[@core.Dbms]
+
+pub async fn enumerate_metadata(@core.ScanContext, @core.Response) -> Unit
+
+pub async fn exchange(@core.ScanContext, @core.Request, String, parameter? : @core.Parameter) -> (@core.Exchange, Int32)?
+
+pub fn finding(@core.ScanContext, @core.Parameter, @core.Technique, @core.Verdict, @core.Dbms, @core.Evidence) -> Unit
+
+pub async fn fingerprint_point(@core.ScanContext, @core.Parameter, @core.Response, @core.InjectionPoint) -> @core.InjectionPoint
+
+pub fn issue(@core.ScanContext, String, String, parameter? : @core.Parameter, request_id? : Int32, fatal? : Bool) -> Unit
+
+pub fn literal(String) -> String
+
+pub fn point(@core.Parameter, @core.Dbms, @core.Technique, String, String, columns? : Int32, position? : Int32) -> @core.InjectionPoint
+
+pub fn registered() -> Array[(@core.Technique, async (@core.ScanContext, @core.Parameter, @core.Response) -> Unit)]
+
+pub async fn restore(@core.ScanContext, @core.Response, @core.Parameter) -> Bool
+
+pub async fn send(@core.ScanContext, String, parameter? : @core.Parameter, value? : String) -> (@core.Response, Int32)?
+
+pub fn union_value(@core.InjectionPoint, String) -> String
+
+// Errors
+
+// Types and methods
+pub(all) struct Boundary {
+  prefix : String
+  suffix : String
+}
+
+// Type aliases
+
+// Traits

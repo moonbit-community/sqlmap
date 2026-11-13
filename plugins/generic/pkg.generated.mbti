@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap/plugins/generic"
+
+import {
+  "moonbit-community/sqlmap/core",
+}
+
+// Values
+pub fn comparator(Array[@core.Response], @core.ComparisonRule) -> ((@core.Response, @core.Response) -> Bool)?
+
+pub fn comparison_text(String, @core.ComparisonRule) -> String
+
+pub fn equivalent(@core.Response, @core.Response) -> Bool
+
+pub fn normalize(String) -> String
+
+pub fn observation(@core.Response, @core.Response, Int32) -> @core.Observation
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

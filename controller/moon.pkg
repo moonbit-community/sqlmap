@@ -1,0 +1,18 @@
+import {
+  "moonbitlang/core/string",
+  "moonbitlang/x/crypto",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/json",
+  "moonbitlang/core/async",
+  "moonbit-community/html",
+  "moonbit-community/sqlmap/core",
+  "moonbit-community/sqlmap/parse",
+  "moonbit-community/sqlmap/techniques",
+  "moonbit-community/sqlmap/plugins/generic",
+}
+
+supported_targets = "native+wasm"
+
+options(
+  "allow-experimental-packages": true,
+)

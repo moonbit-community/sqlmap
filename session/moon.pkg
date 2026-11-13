@@ -1,0 +1,20 @@
+import {
+  "moonbit-community/sqlmap/core",
+  "moonbit-community/sqlite3",
+}
+
+supported_targets = "native+wasm"
+
+warnings = "-79"
+
+import {
+  "moonbit-community/sqlmap/session",
+  "moonbit-community/sqlite3",
+  "moonbitlang/core/async/fs",
+  "moonbitlang/core/async",
+  "moonbit-community/sqlmap/core",
+} for "test"
+
+options(
+  "allow-experimental-packages": true,
+)

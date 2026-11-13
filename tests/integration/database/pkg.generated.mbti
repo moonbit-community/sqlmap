@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap-integration/database"
+
+import {
+  "moonbit-community/sqlite3",
+  "moonbit-community/sqlmap/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Database {
+  connection : @sqlite3.Connection
+  mut statements : Int32
+}
+pub fn Database::close(Self) -> Unit raise
+pub fn Database::execute(Self, String, bound? : String) -> Int32 raise
+pub fn Database::new() -> Self raise
+pub fn Database::query(Self, String, String) -> @core.Response
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,7 @@
+_build/
+target/
+.mooncakes/
+*.core
+core.*
+
+.sqlmap-output/

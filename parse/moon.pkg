@@ -1,0 +1,9 @@
+import {
+  "moonbit-community/sqlmap/core",
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/string",
+  "moonbitlang/core/json",
+}
+
+supported_targets = "native+wasm"

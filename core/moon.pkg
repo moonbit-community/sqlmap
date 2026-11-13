@@ -1,0 +1,14 @@
+import {
+  "moonbitlang/core/json",
+  "moonbitlang/core/async",
+}
+
+options(
+  "allow-experimental-packages": true,
+)
+
+supported_targets = "native+wasm"
+
+// Keep trait implementations without promoting redundant methods (toolchain warning 79).
+
+warnings = "-79"

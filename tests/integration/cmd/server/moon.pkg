@@ -1,0 +1,13 @@
+import {
+  "moonbit-community/sqlmap-integration/support",
+  "moonbitlang/core/async",
+  "moonbitlang/core/async/stdio",
+}
+
+pkgtype(kind: "executable")
+
+supported_targets = "native+wasm"
+
+options(
+  "allow-experimental-packages": true,
+)

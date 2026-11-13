@@ -1,0 +1,49 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap/parse"
+
+import {
+  "moonbit-community/sqlmap/core",
+}
+
+// Values
+pub fn cli(Array[String]) -> @core.CliAction raise @core.ConfigError
+
+pub fn decode(String) -> String raise @core.ConfigError
+
+pub fn encode(String) -> String
+
+pub fn header(String) -> @core.Header raise @core.ConfigError
+
+pub fn origin(String) -> String
+
+pub fn parameters(String, @core.Location) -> Array[@core.Parameter] raise @core.ConfigError
+
+pub fn part_value(@core.Request, @core.RequestPart) -> String
+
+pub fn raw_request(String, @core.Options, source? : String) -> @core.RequestTemplate raise @core.ConfigError
+
+pub fn render_template(@core.RequestTemplate, replacement? : (@core.Parameter, String)) -> @core.Request
+
+pub fn request(@core.Target, @core.Options, replacement? : (@core.Parameter, String)) -> @core.Request
+
+pub fn resolve_url(String, String) -> String?
+
+pub fn select_template(@core.RequestTemplate, Array[String], allow_empty? : Bool) -> Array[@core.Parameter] raise @core.ConfigError
+
+pub fn selected(@core.Target, Array[String]) -> Array[@core.Parameter] raise @core.ConfigError
+
+pub fn sqlite_columns(String) -> Array[String]?
+
+pub fn target(String, data? : String) -> @core.Target raise @core.ConfigError
+
+pub fn template(String, @core.Options, source? : @core.TargetSource) -> @core.RequestTemplate raise @core.ConfigError
+
+pub fn validate(@core.Options) -> Unit raise @core.ConfigError
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,399 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap/core"
+
+import {
+  "moonbitlang/core/debug",
+  "moonbitlang/core/json",
+}
+
+// Values
+pub fn capabilities(Dbms) -> DatabaseCapabilities
+
+// Errors
+#derive(@debug.Debug)
+pub(all) suberror ConfigError {
+  ConfigError(String)
+}
+
+// Types and methods
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct BatchReport {
+  reports : Array[ScanReport]
+  complete : Bool
+}
+pub fn BatchReport::exit_code(Self) -> Int32
+
+#derive(Eq, @debug.Debug)
+pub(all) enum CliAction {
+  Help
+  Run(CliConfig)
+}
+
+#derive(Eq, @debug.Debug)
+pub(all) struct CliConfig {
+  url : String
+  input_file : String?
+  raw_file : Bool
+  options : Options
+  format : Format
+  output : String?
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct ComparisonRule {
+  string : String?
+  not_string : String?
+  regexp : String?
+  code : Int32?
+  text_only : Bool
+  titles : Bool
+}
+pub fn ComparisonRule::default() -> Self
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct DatabaseCapabilities {
+  database : Dbms
+  techniques : Array[Technique]
+  metadata : Array[String]
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) enum Dbms {
+  Unknown
+  SQLite
+  MySQL
+  PostgreSQL
+  SQLServer
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct EnumerationOptions {
+  fingerprint : Bool
+  banner : Bool
+  current_db : Bool
+  dbs : Bool
+  tables : Bool
+  columns : Bool
+  database : String?
+  table : String?
+  column : String?
+}
+pub fn EnumerationOptions::default() -> Self
+pub fn EnumerationOptions::requested(Self) -> Bool
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) struct EnumerationResult {
+  kind : String
+  database : String?
+  table : String?
+  values : Array[String]
+  complete : Bool
+  cached : Bool
+  message : String?
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) struct Evidence {
+  detail : String
+  signature : String?
+  observations : Array[Observation]
+}
+
+#derive(Eq, @debug.Debug)
+pub(all) struct Exchange {
+  response : Response
+  headers : Array[Header]
+  cookies : Array[ResponseCookie]
+  final_url : String
+  elapsed_ms : Int64
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) struct Finding {
+  location : Location
+  parameter : String
+  index : Int32
+  technique : Technique
+  verdict : Verdict
+  database : Dbms
+  evidence : Evidence
+}
+
+#derive(Eq, @debug.Debug)
+pub(all) enum Format {
+  Text
+  Json
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct Header {
+  name : String
+  value : String
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) struct InjectionPoint {
+  location : Location
+  index : Int32
+  parameter : String
+  database : Dbms
+  technique : Technique
+  prefix : String
+  suffix : String
+  union_columns : Int32
+  union_position : Int32
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) enum Location {
+  Query
+  Form
+  JsonBody
+  Cookie
+  HeaderValue
+  Path
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) struct Observation {
+  request_id : Int32
+  status : Int32
+  normalized_length : Int32
+  matches_baseline : Bool
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct Options {
+  data : String?
+  parameters : Array[String]
+  headers : Array[Header]
+  cookie : String?
+  techniques : Array[Technique]
+  timeout_ms : Int32
+  max_response_bytes : Int32
+  http_method : String?
+  force_ssl : Bool
+  retries : Int32
+  delay_ms : Int32
+  threads : Int32
+  time_limit_ms : Int32?
+  time_sec : Int32
+  drop_set_cookie : Bool
+  ignore_redirects : Bool
+  dbms : Dbms
+  prefix : String?
+  suffix : String?
+  explicit_techniques : Bool
+  union_min : Int32
+  union_max : Int32
+  comparison : ComparisonRule
+  enumeration : EnumerationOptions
+  crawl : Int32
+  crawl_exclude : String?
+  crawl_max_pages : Int32
+  forms : Bool
+  batch : Bool
+  output_dir : String
+  session_file : String?
+  fresh_queries : Bool
+  flush_session : Bool
+}
+pub fn Options::default() -> Self
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct Parameter {
+  location : Location
+  index : Int32
+  name : String
+  value : String
+  raw : String
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct ParameterSlot {
+  parameter : Parameter
+  part : RequestPart
+  start : Int32
+  end : Int32
+  encoding : ValueEncoding
+  marked : Bool
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct Request {
+  http_method : String
+  url : String
+  headers : Array[Header]
+  body : String?
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) enum RequestPart {
+  UrlPart
+  BodyPart
+  HeaderPart(Int32)
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct RequestStats {
+  attempted : Int32
+  succeeded : Int32
+  failed : Int32
+  retried : Int32
+  timed_out : Int32
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct RequestTemplate {
+  request : Request
+  slots : Array[ParameterSlot]
+  source : TargetSource
+}
+
+#derive(Eq, @debug.Debug)
+pub(all) struct Response {
+  status : Int32
+  body : String
+}
+
+#derive(Eq, @debug.Debug)
+pub(all) struct ResponseCookie {
+  name : String
+  value : String
+  domain : String?
+  path : String?
+  secure : Bool
+  max_age : Int64?
+  expires : String?
+}
+
+pub(all) struct ScanContext {
+  target : Target
+  options : Options
+  transport : &Transport
+  mut attempted : Int32
+  mut succeeded : Int32
+  mut failed : Int32
+  mut tested_parameters : Int32
+  findings : Array[Finding]
+  issues : Array[ScanIssue]
+  mut template : RequestTemplate?
+  clock : &Clock
+  started : Int64
+  mut last_request : Int64
+  mut last_elapsed : Int64
+  mut last_retried : Bool
+  mut clock_valid : Bool
+  mut retried : Int32
+  mut timed_out : Int32
+  mut compare : (Response, Response) -> Bool
+  points : Array[InjectionPoint]
+  enumeration : Array[EnumerationResult]
+  cookies : Array[StoredCookie]
+  mut restored : Bool
+  mut session : &SessionStore?
+  mut session_key : String
+  mut baseline_key : String
+  mut checkpoint_data : String?
+}
+pub fn ScanContext::has_errors(Self) -> Bool
+pub fn ScanContext::new(Target, Options, &Transport, clock? : &Clock) -> Self
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct ScanIssue {
+  fatal : Bool
+  phase : String
+  message : String
+  parameter : String?
+  location : Location?
+  index : Int32?
+  request_id : Int32?
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct ScanReport {
+  target : String
+  verdict : Verdict
+  complete : Bool
+  database : Dbms
+  tested_parameters : Int32
+  findings : Array[Finding]
+  issues : Array[ScanIssue]
+  requests : RequestStats
+  enumeration : Array[EnumerationResult]
+  injection_points : Array[InjectionPoint]
+  source : TargetSource
+  restored : Bool
+  elapsed_ms : Int64
+}
+pub fn ScanReport::exit_code(Self) -> Int32
+
+pub(all) struct StoredCookie {
+  cookie : ResponseCookie
+  host : String
+  path : String
+  expires_at : Int64?
+}
+
+pub(all) struct SystemClock {
+}
+pub impl Clock for SystemClock
+
+#derive(Eq, @debug.Debug)
+pub(all) struct Target {
+  url : String
+  base : String
+  has_query : Bool
+  query : Array[Parameter]
+  form : Array[Parameter]?
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) struct TargetSource {
+  kind : String
+  origin : String
+  depth : Int32
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) enum Technique {
+  ErrorBased
+  BooleanBased
+  UnionBased
+  TimeBased
+}
+
+#derive(Eq, @debug.Debug, @json.ToJson)
+pub(all) enum ValueEncoding {
+  PercentEncoded
+  JsonString
+  JsonNumber
+  JsonFragment
+  RawValue
+}
+
+#derive(Eq, @debug.Debug, @json.FromJson, @json.ToJson)
+pub(all) enum Verdict {
+  Confirmed
+  Suspected
+  NotDetected
+  Inconclusive
+}
+
+// Type aliases
+
+// Traits
+pub(open) trait Clock {
+  fn now_ms(Self) -> Int64
+}
+
+pub(open) trait SessionStore {
+  fn get(Self, String) -> String? raise
+  fn put(Self, String, String) -> Unit raise
+  fn remove_prefix(Self, String) -> Unit raise
+}
+
+pub(open) trait Transport {
+  async fn send(Self, Request, max_response_bytes~ : Int32) -> Response
+  async fn exchange(Self, Request, max_response_bytes~ : Int32) -> Exchange = _
+}

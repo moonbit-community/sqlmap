@@ -1,0 +1,32 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap-integration/support"
+
+import {
+  "moonbit-community/sqlmap-integration/database",
+  "moonbitlang/core/async/http",
+}
+
+// Values
+pub async fn with_fixture(async (Fixture) -> Unit) -> Unit
+
+// Errors
+
+// Types and methods
+pub struct Fixture {
+  server : @http.Server
+  db : @database.Database
+  mut requests : Int32
+  mut active : Int32
+  mut closed : Bool
+  mut last_headers : Map[@http.CaseInsensitiveString, String]
+  paths : Array[String]
+  bodies : Array[String]
+}
+pub fn Fixture::close(Self) -> Unit raise
+pub async fn Fixture::serve(Self) -> Unit
+pub async fn Fixture::start() -> Self
+pub fn Fixture::url(Self) -> String
+
+// Type aliases
+
+// Traits

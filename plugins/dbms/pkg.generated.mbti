@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap/plugins/dbms"
+
+import {
+  "moonbit-community/sqlmap/core",
+}
+
+// Values
+pub fn infer(Array[Signature]) -> @core.Dbms
+
+pub fn new_errors(String, String) -> Array[Signature]
+
+pub fn signatures() -> Array[Signature]
+
+// Errors
+
+// Types and methods
+pub(all) struct Signature {
+  marker : String
+  database : @core.Dbms
+}
+
+// Type aliases
+
+// Traits

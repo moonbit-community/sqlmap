@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbit-community/sqlmap/request"
+
+import {
+  "moonbit-community/sqlmap/core",
+}
+
+// Values
+
+// Errors
+pub(all) suberror ResponseTooLarge {
+  ResponseTooLarge(Int32)
+}
+
+// Types and methods
+pub(all) struct HttpTransport {
+}
+pub async fn HttpTransport::exchange(Self, @core.Request, max_response_bytes~ : Int32) -> @core.Exchange
+pub async fn HttpTransport::send(Self, @core.Request, max_response_bytes~ : Int32) -> @core.Response
+pub impl @core.Transport for HttpTransport
+
+// Type aliases
+
+// Traits
