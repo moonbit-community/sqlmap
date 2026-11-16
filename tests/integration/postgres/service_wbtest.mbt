@@ -1,4 +1,8 @@
 ///|
+/// The async tests share a schema, so serialize setup, use, and teardown.
+let postgres_fixture_lock : @async.Mutex = Mutex()
+
+///|
 struct PgFixture {
   client : @pg.Client
   server : @http.Server
@@ -45,13 +49,18 @@ async fn PgFixture::query(
     }
     defer @async.protect_from_cancel(() => ignore(stream.finish()))
     let values : Array[String] = []
+    let mut row_count = 0
     while stream.next() is Some(row) {
-      values.push(row.get_text(0).unwrap_or(""))
+      if boolean_only {
+        row_count += 1
+      } else {
+        values.push(row.get_text(0).unwrap_or(""))
+      }
     }
     {
       status: 200,
       body: if boolean_only {
-        "rows=\{values.length()}"
+        "rows=\{row_count}"
       } else if path == "/reflect" {
         "echo=" + value
       } else {
@@ -100,6 +109,8 @@ async fn PgFixture::serve(self : PgFixture) -> Unit {
 
 ///|
 async fn with_postgres(f : async (PgFixture) -> Unit) -> Unit {
+  postgres_fixture_lock.acquire()
+  defer postgres_fixture_lock.release()
   let host = @env.get_env_var("POSTGRES_HOST").unwrap_or("127.0.0.1")
   let port = @env.get_env_var("POSTGRES_PORT")
     .map(p => @string.parse_int(p))
