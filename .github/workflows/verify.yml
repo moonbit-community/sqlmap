@@ -27,9 +27,12 @@ jobs:
       POSTGRES_DB: sqlmap
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - name: Install MoonBit
         run: |
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
       - run: moon update
-      - run: bash scripts/verify.sh
+      - run: node scripts/verify.mjs
